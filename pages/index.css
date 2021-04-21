@@ -24,3 +24,5 @@
 @import url(../blocks/edit-form/__input/edit-form__input.css);
 @import url(../blocks/edit-form/__save/edit-form__save.css);
 @import url(../blocks/edit-form/__close/edit-form__close.css);
+@import url(../blocks/transition/transition.css);
+@import url(../blocks/liked/liked.css);
