@@ -10,3 +10,10 @@
     border: none;
     cursor: pointer;
 }
+
+@media (max-width: 645px) {
+    .edit-form__close {
+        width: 26px;
+        height: 26px;
+    }
+}

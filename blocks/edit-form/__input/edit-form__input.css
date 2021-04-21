@@ -15,3 +15,9 @@
 .edit-form__input:first-of-type {
     margin-bottom: 30px;
 }
+
+@media (max-width: 645px) {
+    .edit-form__input {
+        max-width: 238px;
+    }
+}

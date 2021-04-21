@@ -8,3 +8,13 @@
     line-height: 29px;
     color: #000000;
 }
+
+@media (max-width: 645px) {
+    .edit-form__title {
+        font-size: 18px;
+        line-height: 22px;
+        max-width: 238px;
+        margin: 0 auto;
+        padding: 25px 0 75px;
+    }
+}

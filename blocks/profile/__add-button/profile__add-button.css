@@ -11,3 +11,9 @@
     border-radius: 2px;
     cursor: pointer;
 }
+
+@media (max-width: 645px) {
+    .profile__add-button {
+        width: 282px;
+    }
+}

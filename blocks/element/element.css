@@ -1,7 +1,7 @@
 .element {
     max-width: 282px;
     height: 361px;
-    margin: 0;
+    margin: 0 auto;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
