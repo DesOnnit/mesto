@@ -11,84 +11,86 @@
         <img class="header__logo" src="./images/logo.svg" alt="Место Россия">
     </header>
     <main>
-        <div class="profile">
+        <section class="profile">
             <img class="profile__avatar" src="./images/image.png" alt="Жак-Ив Кусто">
             <div class="profile__info">
                 <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-                <button type="button" class="edit-button transition"></button>
+                <button type="button" class="profile__edit-button transition_btn"></button>
                 <h2 class="profile__info-subtitle">Исследователь океана</h2>
             </div>
-            <button type="button" class="profile__add-button transition"></button>
-        </div>
-        <ul class="elements">
-            <li>
-                <figure class="element">
-                    <img class="element__image" src="./images/Berlin.jpg" alt="Берлин">
-                    <div class="element__caption">
-                        <h2 class="element__title">Берлин</h2>
-                        <button type="button" class="element__like transition"></button>
+            <button type="button" class="profile__add-button transition_btn"></button>
+        </section>
+        <section>
+            <ul class="elements">
+                <li>
+                    <div class="element">
+                        <img class="element__image" src="./images/Berlin.jpg" alt="Берлин">
+                        <div class="element__caption">
+                            <h2 class="element__title">Берлин</h2>
+                            <button type="button" class="element__like transition_like"></button>
+                        </div>
                     </div>
-                </figure>
-            </li>
-            <li>
-                <figure class="element">
-                    <img class="element__image" src="./images/Polsha.jpg" alt="Польша">
-                    <div class="element__caption">
-                        <h2 class="element__title">Польша</h2>
-                        <button type="button" class="element__like transition"></button>
+                </li>
+                <li>
+                    <div class="element">
+                        <img class="element__image" src="./images/Polsha.jpg" alt="Польша">
+                        <div class="element__caption">
+                            <h2 class="element__title">Польша</h2>
+                            <button type="button" class="element__like transition_like"></button>
+                        </div>
                     </div>
-                </figure>
-            </li>
-            <li>
-                <figure class="element">
-                    <img class="element__image" src="./images/Singapore.jpg" alt="Сингапур">
-                    <div class="element__caption">
-                        <h2 class="element__title">Сингапур</h2>
-                        <button type="button" class="element__like transition"></button>
+                </li>
+                <li>
+                    <div class="element">
+                        <img class="element__image" src="./images/Singapore.jpg" alt="Сингапур">
+                        <div class="element__caption">
+                            <h2 class="element__title">Сингапур</h2>
+                            <button type="button" class="element__like transition_like"></button>
+                        </div>
                     </div>
-                </figure>
-            </li>
-            <li>
-                <figure class="element">
-                    <img class="element__image" src="./images/Tokyo.jpg" alt="Токио">
-                    <div class="element__caption">
-                        <h2 class="element__title">Токио</h2>
-                        <button type="button" class="element__like transition"></button>
+                </li>
+                <li>
+                    <div class="element">
+                        <img class="element__image" src="./images/Tokyo.jpg" alt="Токио">
+                        <div class="element__caption">
+                            <h2 class="element__title">Токио</h2>
+                            <button type="button" class="element__like transition_like"></button>
+                        </div>
                     </div>
-                </figure>
-            </li>
-            <li>
-                <figure class="element">
-                    <img class="element__image" src="./images/Turkey.jpg" alt="Турция">
-                    <div class="element__caption">
-                        <h2 class="element__title">Турция</h2>
-                        <button type="button" class="element__like transition"></button>
+                </li>
+                <li>
+                    <div class="element">
+                        <img class="element__image" src="./images/Turkey.jpg" alt="Турция">
+                        <div class="element__caption">
+                            <h2 class="element__title">Турция</h2>
+                            <button type="button" class="element__like transition_like"></button>
+                        </div>
                     </div>
-                </figure>
-            </li>
-            <li>
-                <figure class="element">
-                    <img class="element__image" src="./images/LosAngeles.jpg" alt="Лос-Анджелес">
-                    <div class="element__caption">
-                        <h2 class="element__title">Лос-Анджелес</h2>
-                        <button type="button" class="element__like transition"></button>
+                </li>
+                <li>
+                    <div class="element">
+                        <img class="element__image" src="./images/LosAngeles.jpg" alt="Лос-Анджелес">
+                        <div class="element__caption">
+                            <h2 class="element__title">Лос-Анджелес</h2>
+                            <button type="button" class="element__like transition_like"></button>
+                        </div>
                     </div>
-                </figure>
-            </li>
-        </ul>
+                </li>
+            </ul>   
+        </section>
     </main>
     <footer class="footer">
-        <p>&copy; 2021 Mesto Russia</p>
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
     <div class="popup">
         <div class="popup__container">
-            <form class="edit-form" novalidate>
-                    <h2 class="edit-form__title">Редактировать профиль</h2>
-                    <input type="text" class="edit-form__input" id="name">
-                    <input type="text" class="edit-form__input" id="job"> 
-                <button type="submit" class="edit-form__save transition">Сохранить</button>
+            <form class="popup__form" novalidate>
+                    <h2 class="popup__form-title">Редактировать профиль</h2>
+                    <input type="text" class="popup__form-input" id="name">
+                    <input type="text" class="popup__form-input" id="job"> 
+                <button type="submit" class="popup__form-save transition">Сохранить</button>
              </form>
-            <button type="button" class="close-button transition"></button>
+            <button type="button" class="popup__form-close transition_btn"></button>
         </div>
     </div>
     <script src="./scripts/index.js"></script>

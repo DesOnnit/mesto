@@ -1,6 +1,5 @@
 .profile {
     max-width: 880px;
-    max-height: 120px;
     margin: 0 auto 51px;
     display: grid;
     grid-template-columns: 120px auto 150px;
@@ -13,7 +12,6 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 36px;
-        max-height: 286px;
         max-width: 282px;
     }
 }

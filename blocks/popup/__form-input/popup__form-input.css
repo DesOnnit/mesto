@@ -1,6 +1,6 @@
-.edit-form__input {
+.popup__form-input {
     width: 358px;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     padding-bottom: 12px;
     font-style: normal;
     font-weight: normal;
@@ -13,12 +13,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
-.edit-form__input:first-of-type {
-    margin-bottom: 30px;
+.popup__form-input:last-of-type{
+    margin: 0 auto;
 }
 
 @media (max-width: 645px) {
-    .edit-form__input {
+    .popup__form-input {
         max-width: 238px;
     }
 }
