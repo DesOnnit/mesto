@@ -1,4 +1,4 @@
-.edit-form__close {
+.close-button {
     background-image: url(../../../images/Close\ Icon.svg);
     width: 40px;
     height: 40px;
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 645px) {
-    .edit-form__close {
+    .close-button {
         width: 26px;
         height: 26px;
     }
