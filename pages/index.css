@@ -26,6 +26,6 @@
 @import url(../blocks/popup/__form-save/popup__form-save.css);
 @import url(../blocks/popup/__form-close/popup__form-close.css);
 @import url(../blocks/transition/transition.css);
-@import url(../blocks/transition/_btn/transition_btn.css);
-@import url(../blocks/transition/_like/transition_like.css);
+@import url(../blocks/transition-btn/transition-btn.css);
+@import url(../blocks/transition-like/transition-like.css);
 @import url(../blocks/popup/_open/popup_open.css);
