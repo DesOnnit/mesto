@@ -5,7 +5,7 @@ let formElement = document.querySelector ('.edit-form');
 let nameInput = formElement.querySelector ('#name');
 let jobInput = formElement.querySelector ('#job');
 let save = formElement.querySelector ('.edit-form__save');
-let profileTitle = document.querySelector ('.profile__info_title');
+let profileTitle = document.querySelector ('.profile__info-title');
 let profileSubtitle = document.querySelector ('.profile__info_subtitle');
 
 
