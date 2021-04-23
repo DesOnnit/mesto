@@ -6,3 +6,14 @@
     grid-template-columns: 120px auto 150px;
     align-items: center;
 }
+
+@media (max-width: 645px) {
+    .profile {
+        margin: 42px auto 36px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 36px;
+        max-height: 286px;
+        max-width: 282px;
+    }
+}

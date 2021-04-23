@@ -6,3 +6,13 @@
     color: #FFFFFF;
     margin-left: 30px;
 }
+
+@media (max-width: 645px) {
+    .profile__info {
+        grid-template-columns: 189px 18px;
+        column-gap: 10px;
+        row-gap: 14px;
+        margin: 22px auto 36px;
+    }
+}
+    
