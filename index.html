@@ -82,14 +82,15 @@
     </footer>
     <div class="popup">
         <div class="popup__container">
-            <div class="edit-form">
+            <form class="edit-form" novalidate>
                     <h2 class="edit-form__title">Редактировать профиль</h2>
-                    <p class="edit-form__input">Жак-Ив Кусто</p>
-                    <p class="edit-form__input">Исследователь океана</p>
-                    <button type="button" class="edit-form__save transition">Сохранить</button> 
-             </div>
+                    <input type="text" class="edit-form__input" id="name">
+                    <input type="text" class="edit-form__input" id="job"> 
+                <button type="submit" class="edit-form__save transition">Сохранить</button>
+             </form>
             <button type="button" class="edit-form__close transition"></button>
         </div>
     </div>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>

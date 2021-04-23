@@ -1,5 +1,5 @@
 .edit-form__input {
-    max-width: 358px;
+    width: 358px;
     margin: 0 auto;
     padding-bottom: 12px;
     font-style: normal;
@@ -9,6 +9,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
