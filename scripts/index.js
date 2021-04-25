@@ -6,27 +6,27 @@ let nameInput = formElement.querySelector ('#name');
 let jobInput = formElement.querySelector ('#job');
 let profileTitle = document.querySelector ('.profile__info-title');
 let profileSubtitle = document.querySelector ('.profile__info-subtitle');
-nameInput.value= profileTitle.textContent;
-jobInput.value = profileSubtitle.textContent;
+
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     profileTitle.textContent = `${nameInput.value}`;
     profileSubtitle.textContent = `${jobInput.value}`;
-    toglePopup(popup);
+    closePopup ();
 }
 
-function togleMainPopup (event) {
-    event.preventDefault ();
-    toglePopup (popup);
+function openPopup  () {
+    popup.classList.toggle ('popup_open');
+    nameInput.value= profileTitle.textContent;
+    jobInput.value = profileSubtitle.textContent;
 }
 
-function toglePopup (target) {
-    target.classList.toggle ('popup_open');
+function closePopup () {
+    popup.classList.remove ('popup_open');
 }
 
-openEditForm.addEventListener ('click', togleMainPopup);
-closeEditForm.addEventListener ('click', togleMainPopup);
+openEditForm.addEventListener ('click', openPopup);
+closeEditForm.addEventListener ('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler); 
 
 
