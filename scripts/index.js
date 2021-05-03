@@ -34,6 +34,11 @@ formElement.addEventListener('submit', formSubmitHandler);
 const templateCard = document.querySelector ('#template-card');
 const elements = document.querySelector ('.elements');
 const addButton = document.querySelector ('.profile__add-button');
+const popupCard = document.querySelector ('.popup-card');
+const closeButton = popupCard.querySelector ('.popup__form-close');
+const titleInput = popupCard.querySelector ('#title');
+const linkInput = popupCard.querySelector ('#link');
+const submitCard = popupCard.querySelector ('.popup__form');
 
 const initialCards = [
     {
@@ -62,22 +67,51 @@ const initialCards = [
     }
 ];
 
-function createCard () {
-    const newCard = templateCard.content.querySelector ('#elements__card').cloneNode(true);
-    elements.prepend (newCard);
-}
-
-
-
-initialCards.forEach (function (element) {
+function getCard (element) {
     const newCard = templateCard.content.querySelector ('#elements__card').cloneNode(true);
     newCard.querySelector('.element__title').textContent = element.name;
     newCard.querySelector('.element__image').src = element.link;
-    let likeButton = newCard.querySelector ('.element__like');
+    const likeButton = newCard.querySelector ('.element__like');
     likeButton.addEventListener ('click', function () {
-        likeButton.classList.toggle ('element__like_acive');
+    likeButton.classList.toggle ('element__like_acive');
     });
+    const trashButton = newCard.querySelector ('.element__trash');
+    trashButton.addEventListener ('click', function () {
+      trashButton.closest ('#elements__card').remove();
+    });
+    return newCard;
+}
+
+function addCard () {
+  popupCard.classList.toggle ('popup_open');
+}
+
+function closeCard () {
+  popupCard.classList.remove ('popup_open');
+}
+
+function saveCard (evt) {
+  evt.preventDefault();
+  const newCard = templateCard.content.querySelector ('#elements__card').cloneNode(true);
+  newCard.querySelector('.element__title').textContent = titleInput.value;
+  newCard.querySelector('.element__image').src = linkInput.value;
+  const likeButton = newCard.querySelector ('.element__like');
+  likeButton.addEventListener ('click', function () {
+    likeButton.classList.toggle ('element__like_acive');
+  });
+  const trashButton = newCard.querySelector ('.element__trash');
+  trashButton.addEventListener ('click', function () {
+    trashButton.closest ('#elements__card').remove();
+  });
+  elements.prepend(newCard);
+  closeCard();
+}
+
+initialCards.forEach(function(item){
+    const newCard = getCard(item);
     elements.append (newCard);
 });
 
-addButton.addEventListener ('click', createCard);
+addButton.addEventListener ('click', addCard);
+closeButton.addEventListener ('click', closeCard);
+submitCard.addEventListener ('submit', saveCard);

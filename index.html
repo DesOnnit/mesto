@@ -39,10 +39,29 @@
             <button type="button" class="popup__form-close transition-btn"></button>
         </div>
     </div>
+    <div class="popup popup-card">
+        <div class="popup__container">
+            <form class="popup__form" name="card-form" novalidate>
+                    <h2 class="popup__form-title popup__form-title_card">Новое место</h2>
+                    <input type="text" class="popup__form-input" id="title" name="name" value="Название">
+                    <input type="text" class="popup__form-input" id="link" name="link" value="Ссылка на картинку">
+                <button type="submit" class="popup__form-save transition">Сохранить</button>
+             </form>
+            <button type="button" class="popup__form-close transition-btn"></button>
+        </div>
+    </div>
+    <div class="popup popup-img">
+        <div class="popup__container popup__container_img">
+            <img class="popup__image" src="" alt="">
+            <p class="popup__form-title popup-img__title"></p>
+            <button type="button" class="popup__form-close transition-btn"></button>
+        </div>
+    </div>
     <template id="template-card">
         <li id="elements__card">
             <div class="element">
                 <img class="element__image" src="" alt="">
+                <img class="element__trash transition-btn" src="./images/Trash.svg" alt="Удаление">
                 <div class="element__caption">
                     <h2 class="element__title"></h2>
                     <button type="button" class="element__like transition-like"></button>

@@ -1,5 +1,5 @@
 .popup__form-title{
-    max-width: 330px;
+    width: 330px;
     margin: 0;
     padding: 34px 64px 54px 36px;
     font-style: normal;
@@ -13,7 +13,7 @@
     .popup__form-title {
         font-size: 18px;
         line-height: 22px;
-        max-width: 238px;
+        width: 238px;
         margin: 0 auto;
         padding: 25px 0 75px;
     }

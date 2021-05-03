@@ -5,7 +5,7 @@
     background-color: transparent;
     background-position: 50%;
     position: absolute;
-    right: 0;
+    right: -40px;
     top: 0;
     border: none;
     cursor: pointer;
@@ -15,5 +15,6 @@
     .popup__form-close {
         width: 26px;
         height: 26px;
+        right: 0;
     }
 }
