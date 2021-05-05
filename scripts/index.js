@@ -47,7 +47,7 @@ const submitCard = popupCard.querySelector ('.popup__form_type_card');
 const popupImg = document.querySelector ('.popup_type_image');
 const imgCloseButton = popupImg.querySelector ('.popup__form-close');
 const imgPopap = document.querySelector ('.popup__image');
-const titlePopap = document.querySelector ('.popup-img_title');
+const titlePopap = document.querySelector ('.popup__img-title');
 
 const initialCards = [
     {
