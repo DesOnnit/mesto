@@ -1,10 +1,9 @@
 const openEditForm = document.querySelector('.profile__edit-button');
 const popupEditForm = document.querySelector ('.popup_type_edit');
-const popup = document.querySelector ('.popup');
-const formElement = document.querySelector ('.popup__form_type_edit');
+const formEditElement = document.querySelector ('.popup__form_type_edit');
 const closeEditForm = document.querySelector ('.popup__form-close');
-const nameInput = formElement.querySelector ('#name');
-const jobInput = formElement.querySelector ('#job');
+const nameInput = formEditElement.querySelector ('#name');
+const jobInput = formEditElement.querySelector ('#job');
 const profileTitle = document.querySelector ('.profile__info-title');
 const profileSubtitle = document.querySelector ('.profile__info-subtitle');
 
@@ -13,7 +12,7 @@ function handleProfileFormSubmit (evt) {
     evt.preventDefault();
     profileTitle.textContent = `${nameInput.value}`;
     profileSubtitle.textContent = `${jobInput.value}`;
-    closePopup (popup);
+    closePopup (popupEditForm);
 }
 
 function openPopup (item) {
@@ -27,12 +26,12 @@ function closePopup (item) {
 openEditForm.addEventListener ('click', () => {
     nameInput.value= profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
-    openPopup(popup);
+    openPopup(popupEditForm);
 });
 closeEditForm.addEventListener ('click', () => {
-   closePopup (popup);
+   closePopup (popupEditForm);
 });
-formElement.addEventListener('submit', handleProfileFormSubmit); 
+formEditElement.addEventListener('submit', handleProfileFormSubmit); 
 
 //5 спринт
 
@@ -101,10 +100,10 @@ function getCard (element) {
 
 function handleCardFormSubmit (evt) {
   evt.preventDefault();
-  const newCard = getCard(evt);
-  newCard.querySelector('.element__title').textContent = titleInput.value;
-  newCard.querySelector('.element__image').src = linkInput.value;
-  newCard.querySelector('.element__image').alt = titleInput.value;
+  const newCard = getCard({
+    name: titleInput.value,
+    link: linkInput.value
+  });
   elements.prepend(newCard);
   closePopup (popupCard);
   submitCard.reset();
