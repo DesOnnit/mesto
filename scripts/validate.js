@@ -46,7 +46,7 @@ const hideInputError = (formElement, inputElement, config) => {
         checkInputValidity(formElement, inputElement, config);
         toggleButtonState(buttonElement, inputList, config);
       });
-    })
+    });
   }
   
   const enableValidation = (config) => {
