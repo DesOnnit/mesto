@@ -7,7 +7,6 @@ const jobInput = formEditElement.querySelector ('#job');
 const profileTitle = document.querySelector ('.profile__info-title');
 const profileSubtitle = document.querySelector ('.profile__info-subtitle');
 
-
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
     profileTitle.textContent = `${nameInput.value}`;
@@ -15,12 +14,27 @@ function handleProfileFormSubmit (evt) {
     closePopup (popupEditForm);
 }
 
+const closeByEsc = (item) => (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup (item);
+  };
+}
+const closeByOverlay = (item) => (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup (item);
+  };
+}
+
+
 function openPopup (item) {
     item.classList.add ('popup_open');
+    document.addEventListener ('keydown', closeByEsc(item));
+    item.addEventListener ('click', closeByOverlay(item));
 }
 
 function closePopup (item) {
     item.classList.remove ('popup_open');
+    document.removeEventListener("keydown", closeByEsc);
 }
 
 openEditForm.addEventListener ('click', () => {
@@ -47,6 +61,7 @@ const popupImg = document.querySelector ('.popup_type_image');
 const imgCloseButton = popupImg.querySelector ('.popup__form-close');
 const imgPopap = document.querySelector ('.popup__image');
 const titlePopap = document.querySelector ('.popup__img-title');
+const submitButton = popupCard.querySelector('.popup__submit-button');
 
 const initialCards = [
     {
@@ -115,6 +130,8 @@ initialCards.forEach(function(item){
 });
 
 addButton.addEventListener ('click', () => {
+  submitButton.classList.add('popup__submit-button_disabled');
+  submitButton.disabled = true;
   openPopup (popupCard);
 });
 cardButtonClose.addEventListener ('click', () => {
@@ -124,3 +141,14 @@ submitCard.addEventListener ('submit', handleCardFormSubmit);
 imgCloseButton.addEventListener ('click', () => {
   closePopup (popupImg);
 } );
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+enableValidation(config); 
