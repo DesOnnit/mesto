@@ -87,8 +87,8 @@ function getCard (element) {
     const newCard = templateCard.content.querySelector ('#elements__card').cloneNode(true);
     const elemImg = newCard.querySelector('.element__image');
     newCard.querySelector('.element__title').textContent = element.name;
-    newCard.querySelector('.element__image').alt = element.name;
-    newCard.querySelector('.element__image').src = element.link;
+    elemImg.alt = element.name;
+    elemImg.src = element.link;
     const likeButton = newCard.querySelector ('.element__like');
     likeButton.addEventListener ('click', function () {
       likeButton.classList.toggle ('element__like_acive');
@@ -149,9 +149,6 @@ popups.forEach((popup) => {
             closePopup(popup)
         }
         if (evt.target.classList.contains('popup__form-close')) {
-          closePopup(popup)
-        }
-        if (evt.target === evt.currentTarget) {
           closePopup(popup)
         }
     })
