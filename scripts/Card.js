@@ -19,17 +19,17 @@ export default class Card {
         return this._element;
     }
 
-    _likeCard (evt) {
+    _handleLikeCard (evt) {
         evt.target.classList.add ('element__like_acive');
     }
 
-    _trashCard (evt) {
+    _handletrashCard (evt) {
         evt.target.closest ('#elements__card').remove();
     }
 
     _setEventListeners () {
-        this._element.querySelector ('.element__like').addEventListener('click',this._likeCard);
-        this._element.querySelector ('.element__trash').addEventListener('click',this._trashCard);
+        this._element.querySelector ('.element__like').addEventListener('click',this._handleLikeCard);
+        this._element.querySelector ('.element__trash').addEventListener('click',this._handletrashCard);
         this._element.querySelector ('.element__image').addEventListener('click',() => { 
             this._handleCardClick(this._name,this._link);
         });
