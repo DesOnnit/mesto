@@ -37,5 +37,10 @@ export const config = {
     submitButtonSelector: '.popup__submit-button',
     inactiveButtonClass: 'popup__submit-button_disabled',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
+    errorClass: 'popup__error_visible',
+    imageSelector: '.popup_type_image',
+    popupCardSelector: '.popup_type_card',
+    popupUserSelector: '.popup_type_edit',
+    userNameSelector: '.profile__info-title',
+    userJobSelector: '.profile__info-subtitle'
   };

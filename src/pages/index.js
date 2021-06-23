@@ -8,7 +8,7 @@ import {
   config,
   elements,
   addButton,
-  popupCard,
+  popupCard
   } from '../utils/constants.js'
 import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
@@ -28,28 +28,29 @@ function openImg (name,link) {
 }; 
 
 //Добавление карточки
-const addCard = new Section ({
+const cardsList = new Section ({
   items: initialCards,
   renderer: (item) => {
-    addCard.addItem (generateCard (item))
+    cardsList.addItem (generateCard (item))
   }
 },elements)
-addCard.renderItems()
+cardsList.renderItems()
 
 //Открытие картинки
-const popupImage= new PopupWithImage ('.popup_type_image')
+const popupImage= new PopupWithImage (config.imageSelector)
 popupImage.setEventListeners ()
 
 //Форма добавления карточки
-const popupCardForm = new PopupWithForm ('.popup_type_card',(item) => {
-  addCard.addItem(generateCard (item))
+const popupCardForm = new PopupWithForm (config.popupCardSelector,(item) => {
+  cardsList.addItem(generateCard (item))
   popupCardForm.close()
 })
 popupCardForm.setEventListeners()
 
+//
+const userInfo = new UserInfo (config.userNameSelector, config.userJobSelector);
 //Форма редактирования профиля
-const popupEditForms = new PopupWithForm ('.popup_type_edit', (item) => {
-  const userInfo = new UserInfo ('.profile__info-title','.profile__info-subtitle');
+const popupEditForms = new PopupWithForm (config.popupUserSelector, (item) => {
   userInfo.setUserInfo(item);
   popupEditForms.close();
 })
@@ -57,7 +58,6 @@ popupEditForms.setEventListeners()
 
 //Открытие формы редактирования профиля
 openEditForm.addEventListener ('click', () => {
-  const userInfo = new UserInfo('.profile__info-title','.profile__info-subtitle');
   userInfo.getUserInfo();
   popupEditForms.open();
 });
