@@ -43,7 +43,7 @@ popupImage.setEventListeners ()
 //Форма добавления карточки
 const popupCardForm = new PopupWithForm (config.popupCardSelector,(item) => {
   cardsList.addItem(generateCard (item))
-  popupCardForm.close()
+  popupCardForm.close();
 })
 popupCardForm.setEventListeners()
 
@@ -60,12 +60,20 @@ popupEditForms.setEventListeners()
 openEditForm.addEventListener ('click', () => {
   userInfo.getUserInfo();
   popupEditForms.open();
+  const inputListEditForms = Array.from(popupEditForm.querySelectorAll(config.inputSelector));
+  inputListEditForms.forEach((inputElement) => {
+  editProfileForm.hideInputError(inputElement);
+  });
 });
 
 //Открытие формы добавления карточки
 addButton.addEventListener ('click', () => {
   cardAddForm.toggleButtonState();
   popupCardForm.open();
+  const inputListFormCard = Array.from(popupCard.querySelectorAll(config.inputSelector));
+  inputListFormCard.forEach((inputElement) => {
+  cardAddForm.hideInputError(inputElement);
+  });
 });
 
 //Валидация
@@ -74,5 +82,3 @@ editProfileForm.enableValidation();
 
 const cardAddForm = new FormValidator(config, popupCard);
 cardAddForm.enableValidation();
-
-
