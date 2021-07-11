@@ -42,5 +42,5 @@
 @import url(../blocks/element/__caption/_like/element__caption_like.css);
 @import url(../blocks/element/__like/_counter/element__like_counter.css);
 @import url(../blocks/popup/__form/_delet/popup__form_delet.css);
-@import url(../blocks/popup/__form/_title-delet/popup__form_title-delet.css);
+@import url(../blocks/popup/__form/_delet/popup__form_delet_title.css);
 @import url(../blocks/element/__trash/_active/element__trash_active.css);
