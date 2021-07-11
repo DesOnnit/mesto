@@ -1,4 +1,4 @@
-.popup__form-title_delet {
+.popup__form_title-delet {
     width: 330px;
     margin: 0;
     padding: 34px 36px 38px;
@@ -10,7 +10,7 @@
 }
 
 @media (max-width: 645px) {
-    .popup__form-title_delet {
+    .popup__form_title-delet {
         font-size: 18px;
         line-height: 22px;
         width: 238px;

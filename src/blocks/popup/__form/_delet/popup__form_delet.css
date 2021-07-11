@@ -1,4 +1,4 @@
-.popup__container_delet {
+.popup__form_delet {
 /*     display: flex;
     flex-direction: column; */
     width: 430px;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 645px) {
-    .popup__container_delet {
+    .popup__form_delet {
         width: 100%;
     }
 }
