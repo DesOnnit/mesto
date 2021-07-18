@@ -32,7 +32,6 @@ const generateCard = (item) => {
   return cardElement;
 }
 
-
 //Колбэк открытия картинки
 function openImg (name,link) {
   popupImage.open(name,link)
@@ -53,8 +52,6 @@ function deletCard (card,cardId) {
 } 
 
 const popupWithSubmit = new PopupWithSubmit (config.popupSubmitSelector,deletCard)
-
-
 
 //Открытие картинки
 const popupImage= new PopupWithImage (config.imageSelector)
