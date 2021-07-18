@@ -11,7 +11,10 @@
     </header>
     <main>
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/image.png')%>" alt="Аватар пользователя">
+            <div class="profile__avatar-container">
+                <img class="profile__avatar" src="<%=require('./images/image.png')%>" alt="Аватар пользователя">
+                <button type="button" class="profile__avatar-edit-button"></button>  
+            </div>
             <div class="profile__info">
                 <h1 class="profile__info-title">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit-button transition-btn"></button>
@@ -73,6 +76,19 @@
             <form class="popup__form popup__form_delet">
                 <h2 class="delet-title">Вы уверены?</h2>
                 <button type="submit" class="popup__submit-button transition">Да</button>
+                <button type="button" class="popup__form-close transition-btn"></button>  
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_avatar">
+        <div class="popup__container">
+            <form class="popup__form popup__form_avatar">
+                <h2 class="delet-title">Обновить аватар</h2>
+                <label class="popup__label">
+                    <input type="url" class="popup__input" id="avatar" name="avatar" placeholder="Ссылка на аватар" required>
+                    <span class="popup__error" id="avatar-error"></span>
+                </label>
+                <button type="submit" class="popup__submit-button transition">Сохранить</button>
                 <button type="button" class="popup__form-close transition-btn"></button>  
             </form>
         </div>

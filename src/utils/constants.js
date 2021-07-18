@@ -3,6 +3,7 @@ export const popupEditForm = document.querySelector ('.popup_type_edit');
 export const elements = document.querySelector ('.elements');
 export const addButton = document.querySelector ('.profile__add-button');
 export const popupCard = document.querySelector ('.popup_type_card');
+export const avatarForm = document.querySelector('.popup_type_avatar');
 
 export const config = {
     formSelector: '.popup__form',
@@ -16,5 +17,7 @@ export const config = {
     popupSubmitSelector: '.popup_type_delet',
     popupUserSelector: '.popup_type_edit',
     userNameSelector: '.profile__info-title',
-    userJobSelector: '.profile__info-subtitle'
+    userJobSelector: '.profile__info-subtitle',
+    userAvatarSelector: '.profile__avatar',
+    avatarFormSelector: '.popup_type_avatar'
   };

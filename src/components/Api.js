@@ -38,7 +38,10 @@ export default class Api {
     handleLikeCard (cardId) {
         return this._getFeath (`cards/likes/${cardId}`,'PUT')
     }
-    handUnlike (cardId) {
+    handleUnlike (cardId) {
         return this._getFeath (`cards/likes/${cardId}`,'DELETE')
+    }
+    handleAvatarChange (item) {
+        return this._getFeath (`users/me/avatar`,'PATCH', item)
     }
 }

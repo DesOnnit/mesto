@@ -7,7 +7,8 @@ import {
   config,
   elements,
   addButton,
-  popupCard
+  popupCard,
+  avatarForm
   } from '../utils/constants.js'
 import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
@@ -18,35 +19,42 @@ import Api from '../components/Api.js'
 import PopupWithSubmit from '../components/PopupWithSubmit.js'
 //Функция создания карточки
 
-let newCard;
 const generateCard = (item) => {
   const newCard = new Card(
     item,
     '#template-card',
     openImg,
-    openSubmit
+    openSubmit,
+    {handleLikeClick:_ => newCard.handleLikeCard()},
+    api
     );
   const cardElement = newCard.createCard(userInfo.getUserId());
   return cardElement;
 }
+
 
 //Колбэк открытия картинки
 function openImg (name,link) {
   popupImage.open(name,link)
 }; 
 
-function openSubmit() {
-  popupWithSubmit.open()
+function openSubmit(card,cardId) {
+  popupWithSubmit.open(card,cardId);
+  popupWithSubmit.setEventListeners()
 }
 
-const popupWithSubmit = new PopupWithSubmit (config.popupSubmitSelector, (item) =>{
-  api.deleteCard (newCard.getCardId())
-    .then(() => {
-      newCard.handleDeleteCard()
-    })
-    popupWithSubmit.close()
-})
-popupWithSubmit.setEventListeners()
+function deletCard (card,cardId) {
+  api.deleteCard(cardId)
+  .then(() => {
+    card.handleDeleteCard ();
+      popupWithSubmit.close();
+  })
+  .catch((err) => console.log(err))
+} 
+
+const popupWithSubmit = new PopupWithSubmit (config.popupSubmitSelector,deletCard)
+
+
 
 //Открытие картинки
 const popupImage= new PopupWithImage (config.imageSelector)
@@ -60,6 +68,8 @@ const popupCardForm = new PopupWithForm (config.popupCardSelector, item => {
   })
     .then ((res) => {
       cardsList.addItem(generateCard (res))})
+    .catch((err) => console.log(err))
+    .finally(() => popupCardForm.querySelector('.popup__submit-button').textContent = `Создать`)
   popupCardForm.close();
 })
 popupCardForm.setEventListeners()
@@ -67,11 +77,11 @@ popupCardForm.setEventListeners()
 //
 let userInfo;
 const userApi = (res) => {
-   userInfo = new UserInfo (config.userNameSelector, config.userJobSelector,res); 
+   userInfo = new UserInfo (config.userNameSelector, config.userJobSelector,config.userAvatarSelector,res); 
 }
 
 //Форма редактирования профиля
-const popupEditForms = new PopupWithForm (config.popupUserSelector, item => {
+const popupEditForms = new PopupWithForm (config.popupUserSelector, (item) => {
   api.saveUserInfo({
     name: item.name,
     about: item.job
@@ -79,9 +89,32 @@ const popupEditForms = new PopupWithForm (config.popupUserSelector, item => {
     .then((res) => {
       userInfo.setUserInfo(res)
     })
+    .catch((err) => console.log(err))
+    .finally(() => document.querySelector('.popup__submit-button').textContent = `Сохранить`)
     popupEditForms.close();
 })
 popupEditForms.setEventListeners()
+
+const popupAvatarChange = new PopupWithForm (config.avatarFormSelector, (item) =>{
+  api.handleAvatarChange ({avatar:item.avatar})
+  .then ((res) => {
+    userInfo.setUserAvatar(res);
+    popupAvatarChange.close()
+  })
+  .catch((err) => console.log(err))
+  .finally(() => document.querySelector('.popup__submit-button').textContent = `Сохранить`)
+})
+popupAvatarChange.setEventListeners()
+
+const popupAvatarEdit = document.querySelector('.profile__avatar-edit-button')
+popupAvatarEdit.addEventListener ('click',()=> {
+  avatarAddForm.toggleButtonState();
+  popupAvatarChange.open()
+  const inputListAvatarForm = Array.from(avatarForm.querySelectorAll(config.inputSelector));
+  inputListAvatarForm.forEach((inputElement) => {
+  avatarAddForm.hideInputError(inputElement);
+  });
+})
 
 //Открытие формы редактирования профиля
 openEditForm.addEventListener ('click', () => {
@@ -110,6 +143,10 @@ editProfileForm.enableValidation();
 const cardAddForm = new FormValidator(config, popupCard);
 cardAddForm.enableValidation();
 
+const avatarAddForm = new FormValidator (config, avatarForm);
+avatarAddForm.enableValidation();
+
+
 //9 sprint
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-25',
@@ -123,6 +160,7 @@ api.getUserInfo ()
   .then (res =>{
     userApi(res);
   })
+  .catch((err) => console.log(err))
 
 let cardsList;
 const cardAdd = (res) => {
@@ -139,5 +177,4 @@ api.getInitialCards ()
   .then (res => {
     cardAdd(res)
   })
-
-
+  .catch((err) => console.log(err))
