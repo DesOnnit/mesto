@@ -18,7 +18,6 @@ export default class Api {
                 }
                 throw new Error (res.status)
             })
-            .catch (err => console.log(`${err}`))
     }
     getUserInfo () {
         return this._getFeath ('users/me','GET')
@@ -44,4 +43,7 @@ export default class Api {
     handleAvatarChange (item) {
         return this._getFeath (`users/me/avatar`,'PATCH', item)
     }
+    getInitialData() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards ()]);
+      }
 }

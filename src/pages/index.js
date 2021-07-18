@@ -8,7 +8,9 @@ import {
   elements,
   addButton,
   popupCard,
-  avatarForm
+  avatarForm,
+  nameInput,
+  jobInput
   } from '../utils/constants.js'
 import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
@@ -18,7 +20,7 @@ import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 import PopupWithSubmit from '../components/PopupWithSubmit.js'
 //Функция создания карточки
-
+let ownerId = null;
 const generateCard = (item) => {
   const newCard = new Card(
     item,
@@ -26,10 +28,10 @@ const generateCard = (item) => {
     openImg,
     openSubmit,
     {handleLikeClick:_ => newCard.handleLikeCard()},
-    api
+    api,
+    ownerId
     );
-  const cardElement = newCard.createCard(userInfo.getUserId());
-  return cardElement;
+  return newCard;
 }
 
 //Колбэк открытия картинки
@@ -39,7 +41,6 @@ function openImg (name,link) {
 
 function openSubmit(card,cardId) {
   popupWithSubmit.open(card,cardId);
-  popupWithSubmit.setEventListeners()
 }
 
 function deletCard (card,cardId) {
@@ -52,6 +53,7 @@ function deletCard (card,cardId) {
 } 
 
 const popupWithSubmit = new PopupWithSubmit (config.popupSubmitSelector,deletCard)
+popupWithSubmit.setEventListeners()
 
 //Открытие картинки
 const popupImage= new PopupWithImage (config.imageSelector)
@@ -64,18 +66,18 @@ const popupCardForm = new PopupWithForm (config.popupCardSelector, item => {
     link: item.link
   })
     .then ((res) => {
-      cardsList.addItem(generateCard (res))})
+      const card = generateCard(res);
+      const cardElement = card.createCard();
+      cardsList.addItem(cardElement);
+      popupCardForm.close();})
     .catch((err) => console.log(err))
     .finally(() => popupCard.querySelector('.popup__submit-button').textContent = `Создать`)
-  popupCardForm.close();
 })
 popupCardForm.setEventListeners()
 
 //
-let userInfo;
-const userApi = (res) => {
-   userInfo = new UserInfo (config.userNameSelector, config.userJobSelector,config.userAvatarSelector,res); 
-}
+
+const userInfo = new UserInfo (config.userNameSelector, config.userJobSelector,config.userAvatarSelector); 
 
 //Форма редактирования профиля
 const popupEditForms = new PopupWithForm (config.popupUserSelector, (item) => {
@@ -85,10 +87,10 @@ const popupEditForms = new PopupWithForm (config.popupUserSelector, (item) => {
   })
     .then((res) => {
       userInfo.setUserInfo(res)
+      popupEditForms.close();
     })
     .catch((err) => console.log(err))
     .finally(() => popupEditForm.querySelector('.popup__submit-button').textContent = `Сохранить`)
-    popupEditForms.close();
 })
 popupEditForms.setEventListeners()
 
@@ -105,32 +107,23 @@ popupAvatarChange.setEventListeners()
 
 const popupAvatarEdit = document.querySelector('.profile__avatar-edit-button')
 popupAvatarEdit.addEventListener ('click',()=> {
-  avatarAddForm.toggleButtonState();
   popupAvatarChange.open()
-  const inputListAvatarForm = Array.from(avatarForm.querySelectorAll(config.inputSelector));
-  inputListAvatarForm.forEach((inputElement) => {
-  avatarAddForm.hideInputError(inputElement);
-  });
+  avatarAddForm.resetValidation()
 })
 
 //Открытие формы редактирования профиля
 openEditForm.addEventListener ('click', () => {
-  userInfo.getUserInfo();
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  jobInput.value = userData.job;
   popupEditForms.open();
-  const inputListEditForms = Array.from(popupEditForm.querySelectorAll(config.inputSelector));
-  inputListEditForms.forEach((inputElement) => {
-  editProfileForm.hideInputError(inputElement);
-  });
+  editProfileForm.resetValidation()
 });
 
 //Открытие формы добавления карточки
 addButton.addEventListener ('click', () => {
-  cardAddForm.toggleButtonState();
   popupCardForm.open();
-  const inputListFormCard = Array.from(popupCard.querySelectorAll(config.inputSelector));
-  inputListFormCard.forEach((inputElement) => {
-  cardAddForm.hideInputError(inputElement);
-  });
+  cardAddForm.resetValidation()
 });
 
 //Валидация
@@ -153,26 +146,21 @@ const api = new Api({
   }
 }); 
 
-api.getUserInfo ()
-  .then (res =>{
-    userApi(res);
-  })
-  .catch((err) => console.log(err))
-
-let cardsList;
-const cardAdd = (res) => {
-  cardsList = new Section ({
-    items: res,
+  const cardsList = new Section ({
     renderer: (item) => {
-      cardsList.addItem (generateCard (item))
+      const card = generateCard(item);
+      const cardElement = card.createCard();
+      cardsList.addItem(cardElement);
     }
   },elements)
-  cardsList.renderItems() 
- }
-
-api.getInitialCards ()
-  .then (res => {
-    cardAdd(res)
+ 
+  api.getInitialData()
+  .then((data) => {
+    const [userData, cardsData] = data;
+    ownerId = userData._id;
+    userInfo.setUserInfo(userData);
+    cardsList.renderItems(cardsData);
   })
-  .catch((err) => console.log(err))
-  
+  .catch((err) => {
+    console.log(err);
+  })

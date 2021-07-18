@@ -5,9 +5,6 @@ export default class PopupWithSubmit extends Popup {
         this._setFormSubmitHandler = handler
         this._form = this._popup.querySelector('.popup__form');
     }
-    close () {
-        super.close ();
-    }
     open (card,cardId) {
         super.open ();
         this._card = card;

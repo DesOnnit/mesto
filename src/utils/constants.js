@@ -4,6 +4,8 @@ export const elements = document.querySelector ('.elements');
 export const addButton = document.querySelector ('.profile__add-button');
 export const popupCard = document.querySelector ('.popup_type_card');
 export const avatarForm = document.querySelector('.popup_type_avatar');
+export const nameInput = document.getElementById('name')
+export const jobInput = document.getElementById('job')
 
 export const config = {
     formSelector: '.popup__form',

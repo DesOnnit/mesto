@@ -1,5 +1,5 @@
 export default class Card {
-    constructor (data,cardSelector,handleCardClick,handleRemoveClick,{handleLikeClick},api) {
+    constructor (data,cardSelector,handleCardClick,handleRemoveClick,{handleLikeClick},api,ownerId) {
         this._name = data.name;
         this._link = data.link;
         this._owner = data.owner
@@ -10,25 +10,26 @@ export default class Card {
         this._handleRemoveClick = handleRemoveClick;
         this._handleLikeClick = handleLikeClick;
         this._api = api;
+        this._ownerId = ownerId
     }
 
     _getTemplate = () => {
         this._newCard = document.querySelector(this._cardSelector).content.querySelector('#elements__card').cloneNode(true);
         return this._newCard;
     }
-    createCard = (userId) => {
+    createCard () {
         this._element = this._getTemplate(); 
         this._setEventListeners ();
         this._elementImage = this._element.querySelector('.element__image');
         this._elementImage.alt = this._name;
         this._elementImage.src = this._link;
         this._element.querySelector('.element__title').textContent = this._name;
-        if (this._owner._id === userId) {
+        if (this._owner._id === this._ownerId) {
             this._element.querySelector('.element__trash').classList.add('element__trash_active');
           }
         this._likeCount = this._element.querySelector('.element__like_counter');
         this._likeCount.textContent = this._likes.length;
-        if(this._likes.find((obj) => userId === obj._id)) {
+        if(this._likes.find((obj) => this._ownerId === obj._id)) {
             this._element.querySelector('.element__like').classList.add('element__like_acive')
           }
         return this._element;
