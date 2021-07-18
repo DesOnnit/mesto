@@ -69,7 +69,7 @@ const popupCardForm = new PopupWithForm (config.popupCardSelector, item => {
     .then ((res) => {
       cardsList.addItem(generateCard (res))})
     .catch((err) => console.log(err))
-    .finally(() => popupCardForm.querySelector('.popup__submit-button').textContent = `Создать`)
+    .finally(() => popupCard.querySelector('.popup__submit-button').textContent = `Создать`)
   popupCardForm.close();
 })
 popupCardForm.setEventListeners()
@@ -90,7 +90,7 @@ const popupEditForms = new PopupWithForm (config.popupUserSelector, (item) => {
       userInfo.setUserInfo(res)
     })
     .catch((err) => console.log(err))
-    .finally(() => document.querySelector('.popup__submit-button').textContent = `Сохранить`)
+    .finally(() => popupEditForm.querySelector('.popup__submit-button').textContent = `Сохранить`)
     popupEditForms.close();
 })
 popupEditForms.setEventListeners()
@@ -102,7 +102,7 @@ const popupAvatarChange = new PopupWithForm (config.avatarFormSelector, (item) =
     popupAvatarChange.close()
   })
   .catch((err) => console.log(err))
-  .finally(() => document.querySelector('.popup__submit-button').textContent = `Сохранить`)
+  .finally(() => avatarForm.querySelector('.popup__submit-button').textContent = `Сохранить`)
 })
 popupAvatarChange.setEventListeners()
 
@@ -178,3 +178,4 @@ api.getInitialCards ()
     cardAdd(res)
   })
   .catch((err) => console.log(err))
+  
